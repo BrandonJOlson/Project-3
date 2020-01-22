@@ -655,33 +655,33 @@ activities.addEventListener('change' , function(e){
 
 const form = document.getElementsByTagName('form')[0];
 
-form.addEventListener('submit', function() {
-  if (name === "") {
+form.addEventListener('submit', function(event) {
+  if (name.value === "") {
       document.innerHTML = invalidName;
       event.preventDefault();
   } 
   
-  if (email === "") {
+  if (email.value === "") {
       document.innerHTML = invalidEmail;
       event.preventDefault();
   }
   
-  if (activities === "") {
+  if (activities.value === "") {
       document.innerHTML = checkboxSelection;
       event.preventDefault();
   }
   
-  if (creditCardNumber === "") {
+  if (creditCardNumber.value === "") {
       document.innerHTML = invalidCcNum;
       event.preventDefault();
   }
   
-  if (zipcode === "") {
+  if (zipcode.value === "") {
       document.innerHTML = invalidZip;
       event.preventDefault();
   }
   
-  if (cvv === "") {
+  if (cvv.value === "") {
       document.innerHTML = invalidCvv;
       event.preventDefault();
   }
