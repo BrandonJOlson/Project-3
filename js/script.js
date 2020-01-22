@@ -649,18 +649,40 @@ activities.addEventListener('change' , function(e){
  //                CHECK IF ALL VALIDATIONS ARE TRUE 
 //===============================================================================
 
-button.addEventListener('click', (event) => {
-  if (name.str.length === '') {
-    return invalidName;
-  } else if (email.str.length === '') {
-    return invalidEmail;
-  } else if (creditCardNumber.str.length === '') {
-    return invalidCcNum;
-  } else if (zipcode.str.length === '') {
-    return invalidZip;
-  } else if (cvv.str.length === '') {
-    return invalidCvv;
-  } else if (activities.selected === "false") {
-    return checkboxSelection;
+//      CANNOT GET THIS EVENT LISTENER TO WORK :(
+
+
+
+const form = document.getElementsByTagName('form')[0];
+
+form.addEventListener('submit', function() {
+  if (name === "") {
+      document.innerHTML = invalidName;
+      event.preventDefault();
+  } 
+  
+  if (email === "") {
+      document.innerHTML = invalidEmail;
+      event.preventDefault();
   }
-})
+  
+  if (activities === "") {
+      document.innerHTML = checkboxSelection;
+      event.preventDefault();
+  }
+  
+  if (creditCardNumber === "") {
+      document.innerHTML = invalidCcNum;
+      event.preventDefault();
+  }
+  
+  if (zipcode === "") {
+      document.innerHTML = invalidZip;
+      event.preventDefault();
+  }
+  
+  if (cvv === "") {
+      document.innerHTML = invalidCvv;
+      event.preventDefault();
+  }
+  });
