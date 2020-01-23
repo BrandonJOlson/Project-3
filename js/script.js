@@ -95,6 +95,7 @@ const ccDiv = document.getElementById('credit-card');
 const paypalDiv = document.getElementById('paypal');
 const bitcoinDiv = document.getElementById('bitcoin');
 const button = document.getElementsByTagName('button')[0];
+const form = document.querySelector('form');
 /////////////////////////////////////////////////////////////////
 
 
@@ -294,6 +295,7 @@ payment.addEventListener('change', () => {
 //===============================================================================
 function validateName(){
   // get value from name input
+  //document.getElementById("name").value;
   const name = $("#name").val();
   const regexName = /^[A-Za-z]+\s?([A-Za-z]+)?$/; 
   if(regexName.test(name)){
@@ -350,11 +352,49 @@ function validateCvvCode(){
       return false;
   }
 }
+ //               ACTIVITIE VALIDATION FUNCTION
+//===============================================================================
+
+// const purple = document.querySelectorAll('input[type="checkbox"]');
+// let boxChecked = false;
+// function validateActivities() {
+//   for(let i = 0; i < purple.length; i++) {
+//     if(purple[i].checked) {
+//     boxChecked = true;
+//     } else if (boxChecked) {
+//       checkboxSelection.style.display = "none";
+//     } else {
+//       checkboxSelection.style.display = "block";
+//     }
+//   }
+//};
+
+
+
+
+
+// let boxChecked = false;
+
+// for (let i = 0; i < activities.length; i++) {
+//     if (activities[i].checked) {
+//         boxChecked = true;
+//         break;
+//     }
+// }
+
+// if (boxChecked) {
+//     // hide the message
+// } else {
+//     // show the message and prevent default action
+// }
+
+
+
 
 
 //     ERROR
 //ERROR
-//     ERROR
+    //ERROR
 $(document).ready(function(){
   $("#name").keyup(function(){
     if(validateName()){
@@ -381,7 +421,7 @@ $("#mail").keyup(function(){
       return true;
   } else{
       // if the user email is not valid set the input text and border to red
-      email.before(invalidEmail)
+      email.before(invalidEmail);
       invalidEmail.style.fontSize = "1em"
       invalidEmail.style.color = "red";
       email.style.border = "2px solid red";
@@ -439,180 +479,30 @@ $("#cvv").keyup(function(){
      invalidCvv.style.display = "block";
      return false;   
  }
+
 });
+
+// activities.addEventListener('click', function() {
+//   if (validateActivities()) {
+//     activities.style.border = "2pc solid green";
+//     checkboxSelection.style.display = "none";
+//     return true;
+//   } else {
+//     activities.before(checkboxSelection);
+//     checkboxSelection.style.fontSize = "1em";
+//     checkboxSelection.style.color = "red";
+//     activities.style.border = "2px solid red"
+//     checkboxSelection.style.display = "block";
+//     return false;
+//     //alert('IT WORKS!');
+//   }
+// })
+
+
+
 });
  //                END VALIDATION FUNCTION
 //===============================================================================
-
-
-
-
-
- //                ERROR MESSAGES
-//===============================================================================
-//            NAME INPUT VALIDATION
-const nameValidation = () => {
-    //const $name = $('#name')
-    if (name.length <= 0) {
-        // checking of error when the length is greater than zero if there is an error
-        if(name.length > 0) {
-           return false;
-        } else {
-            // if the user name is not valid set the input text and border to red
-            name.before(invalidName)
-            invalidName.style.fontSize = "1em";
-            invalidName.style.color = "red";
-            name.style.border = "2px solid red";
-            invalidName.style.display = "block";
-            return false; 
-        }
-      }else {
-        // remove all error when input is not empty
-        //name.before()
-            name.style.border = "2px solid green";
-            invalidName.style.display = "none";
-            return true;
-    }
-}
-
-//          EMAIL INPUT VALIDATION
-const emailValidation = () => {
-    const $regexEmailExpresion = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    // checking for valid email form the user
-    const $isValidEmailExpresion = $regexEmailExpresion.test($email.val());
-    if ($isValidEmailExpresion){
-        // if the user email is valid set the input text and border to green
-        $("#mail").before(/*liveValidEmailMessage*/)
-        $("#mail").css("border", "2px solid green");
-        invalidEmail.css("display","none");
-        return true;
-    } else {
-        // checking if there is an error from the user
-        if($('#error_email').length > 0) 
-        {   return false;
-        } else {
-            // if the user email is not valid set the input text and border to red
-            $("#mail").before(invalidEmail)
-            invalidEmail.style.fontSize = "1em";
-            invalidEmail.style.color = "red";
-            $("#mail").css("border", "2px solid red");
-            invalidEmail.css("display","block");
-            return false;
-        }
-    }
-
-}
-
-//            CHECKBOX VALIDATION 
-const checkboxValidation = () => {
-    let $numChecked = 0;
-    let $checkbox = $('.activities input[type="checkbox"]');
-    const $legend = $('.activities legend');
-    //loops through checkbox items to check for 'checked' property
-    for (i = 0; i < $checkbox.length; i ++){ 
-        if ($checkbox.eq(i).prop('checked')) {
-            $numChecked = $numChecked + 1;
-        } 
-    }
-    if ($numChecked < 1){
-        if($('#error_activities').length > 0) 
-        {   return false;
-        } else { 
-            $legend.after(checkboxSelection);
-            return false;
-        }
-    } else {
-        $('#error_activities').css({"display":"none"}); 
-        return true;
-    }
-}
-
-
-//            CREDIT CARD VALIDATION 
-const creditCardValidaiton = () => {
-    const $regexCardExpression = /^\d{13,16}$/; 
-    // check if the credit card number is valid(bewteen 13 and 16 digits)
-    const $isValidCardExpression = $regexCardExpression.test($cardNumber.val());
-    if ($cardNumber.val().length > 0 && $isValidCardExpression == true){
-        // if the user credit credit number is valid set the input text and border to red
-        $("#cc-num").before()
-        $("#cc-num").css("border", "2px solid green");
-        invalidCcNum.css("display","none");
-        return true;
-    } else {
-        if($('#error_credit_card').length > 0) 
-        {   return false;
-        } else {
-        // if the user credit card number is not valid set the input text and border to red
-        $("#cc-num").before(invalidCcNum)
-        invalidCcNum.style.fontSize = "1em";
-        invalidCcNum.style.color = "red";
-        $("#cc-num").css("border", "2px solid red");
-        invalidCcNum.css("display","block");
-        return false;
-        }
-    }
-}
-
-//              ZIPCODE VALIDATION
-const zipcodeValidation = () =>{
-    const $regexZipCodeExpreesion = /^\d{5}$|^\d{5}-\d{4}$/;
-    // checking for valid zipcode from user 
-    const $isValidZipCode = $regexZipCodeExpreesion.test($zipCodeNumber.val());
-    // if there is a valid input do not dispaly an error message 
-    if ($zipCodeNumber.val().length > 0 && $isValidZipCode == true){
-        // if the user zip code is valid set the input text and border to red
-        $("#zip").before()
-        $("#zip").css("border", "2px solid green");
-        invalidZip.css("display","none");
-        return true;
-        // else, display an error message
-    } else {
-        if($('#error_zipcode').length > 0)
-        {   return false;
-        } else {
-        // if the user zip code is not valid set the input text and border to red
-        $("#zip").before(invalidZip)
-        invalidZip.style.fontSize = "1em";
-        invalidZip.style.color = "red";
-        $("#zip").css("border", "2px solid red");
-        invalidZip.css("display","block");
-        return false; 
-        }
-    }
-}
-
-//              CVV VALIDATION
-const cvvValidation = () => {
-    const $regexCvvCodeExpreesion = /^[0-9]{3,3}$/;
-    // checking if the cvv code is valid
-    const $isValidCvvExpression = $regexCvvCodeExpreesion.test($cvvCode.val());
-    if ($cvvCode.val().length > 0 && $isValidCvvExpression == true){
-          // if the user cvv code is valid set the input text and border to red
-        $("#cvv").before()
-        $("#cvv").css("border", "2px solid green");
-        invalidCvv.css("display","none");
-        return true;
-    } else {
-        if($('#error_cvvcode').length > 0)
-        {   return false;
-        } else {
-        // if the user cvv code is not valid set the input text and border to red
-        $("#cvv").before(invalidCvv)
-        invalidCvv.style.fontSize = "1em";
-        invalidCvv.style.color = "red";
-        $("#cvv").css("border", "2px solid red");
-        invalidCvv.css("display","block");
-        return false; 
-        }
-    }
-}
- //                END ERROR MESSAGES
-//===============================================================================
-
-
-
-
 
  //                ACTIVITIES SELECTION & COST CALCULATIONS
 //===============================================================================
@@ -649,40 +539,90 @@ activities.addEventListener('change' , function(e){
  //                CHECK IF ALL VALIDATIONS ARE TRUE 
 //===============================================================================
 
-//      CANNOT GET THIS EVENT LISTENER TO WORK :(
+form.addEventListener('submit', (event) => {
+  
+  if (!validateEmail()) {
+    // invalidEmail.appendChild(email);
+    // email.insertBefore(invalidEmail);
+    email.before(invalidEmail);
+    invalidEmail.style.fontSize = "1em";
+    invalidEmail.style.color = "red";
+    email.style.border = "2px solid red"
+    //alert('Please Enter Valid Email Address');
+  }
+  event.preventDefault();
+
+  if (!validateCardNumber()) {
+    // invalidEmail.appendChild(email);
+    // email.insertBefore(invalidEmail);
+    creditCardNumber.before(invalidCcNum);
+    invalidCcNum.style.fontSize = "1em";
+    invalidCcNum.style.color = "red";
+    creditCardNumber.style.border = "2px solid red"
+    //alert('Please Enter Creditcard Number');
+  }
+  event.preventDefault();
+
+
+  if (!validateName()) {
+    // invalidEmail.appendChild(email);
+    // email.insertBefore(invalidEmail);
+    name.before(invalidName);
+    invalidName.style.fontSize = "1em";
+    invalidName.style.color = "red";
+    name.style.border = "2px solid red"
+    //alert('IT WORKS!');
+  }
+  event.preventDefault();
+
+
+  if (!validateCvvCode()) {
+    // invalidEmail.appendChild(email);
+    // email.insertBefore(invalidEmail);
+    cvv.before(invalidCvv);
+    invalidCvv.style.fontSize = "1em";
+    invalidCvv.style.color = "red";
+    cvv.style.border = "2px solid red"
+    //alert('IT WORKS!');
+  }
+  event.preventDefault();
+
+  if (!validateZipCode()) {
+    // invalidEmail.appendChild(email);
+    // email.insertBefore(invalidEmail);
+    zip.before(invalidZip);
+    invalidZip.style.fontSize = "1em";
+    invalidZip.style.color = "red";
+    zip.style.border = "2px solid red"
+    //alert('IT WORKS!');
+  }
+  event.preventDefault();
+
+  if (!validateName()) {
+    // invalidEmail.appendChild(email);
+    // email.insertBefore(invalidEmail);
+    name.before(invalidName);
+    invalidName.style.fontSize = "1em";
+    invalidName.style.color = "red";
+    name.style.border = "2px solid red"
+    //alert('IT WORKS!');
+  }
+  event.preventDefault();
+
+  if (!activities()) {
+    // invalidEmail.appendChild(email);
+    // email.insertBefore(invalidEmail);
+    activities.before(checkboxSelection);
+    checkboxSelection.style.fontSize = "1em";
+    checkboxSelection.style.color = "red";
+    activities.style.border = "2px solid red"
+    //alert('IT WORKS!');
+  }
+  event.preventDefault();
+
+
+})
+ 
 
 
 
-const form = document.getElementsByTagName('form')[0];
-
-form.addEventListener('submit', function(event) {
-  if (name.value === "") {
-      document.innerHTML = invalidName;
-      event.preventDefault();
-  } 
-  
-  if (email.value === "") {
-      document.innerHTML = invalidEmail;
-      event.preventDefault();
-  }
-  
-  if (activities.value === "") {
-      document.innerHTML = checkboxSelection;
-      event.preventDefault();
-  }
-  
-  if (creditCardNumber.value === "") {
-      document.innerHTML = invalidCcNum;
-      event.preventDefault();
-  }
-  
-  if (zipcode.value === "") {
-      document.innerHTML = invalidZip;
-      event.preventDefault();
-  }
-  
-  if (cvv.value === "") {
-      document.innerHTML = invalidCvv;
-      event.preventDefault();
-  }
-  });
