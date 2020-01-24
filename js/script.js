@@ -377,7 +377,7 @@ function validateActivities() {
     //ERROR
 $(document).ready(function(){
 
-  activities.addEventListener('keyup', function() {
+  activities.addEventListener('change', function() {
       if(validateActivities()) {
       activities.style.border = "2px solid green";
       checkboxSelection.style.display = "none";
@@ -523,13 +523,15 @@ activities.addEventListener('change' , function(e){
 //===============================================================================
 
 form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  
   if (!validateEmail()) {
     email.before(invalidEmail);
     invalidEmail.style.fontSize = "1em";
     invalidEmail.style.color = "red";
     email.style.border = "2px solid red"
   }
-  event.preventDefault();
+  //event.preventDefault();
 
   if (!validateCardNumber()) {
     creditCardNumber.before(invalidCcNum);
@@ -537,7 +539,7 @@ form.addEventListener('submit', (event) => {
     invalidCcNum.style.color = "red";
     creditCardNumber.style.border = "2px solid red"
   }
-  event.preventDefault();
+  //event.preventDefault();
 
 
   if (!validateName()) {
@@ -546,7 +548,7 @@ form.addEventListener('submit', (event) => {
     invalidName.style.color = "red";
     name.style.border = "2px solid red"
   }
-  event.preventDefault();
+  //event.preventDefault();
 
 
   if (!validateCvvCode()) {
@@ -555,7 +557,7 @@ form.addEventListener('submit', (event) => {
     invalidCvv.style.color = "red";
     cvv.style.border = "2px solid red"
   }
-  event.preventDefault();
+  //event.preventDefault();
 
   if (!validateZipCode()) {
     zip.before(invalidZip);
@@ -563,7 +565,7 @@ form.addEventListener('submit', (event) => {
     invalidZip.style.color = "red";
     zip.style.border = "2px solid red"
   }
-  event.preventDefault();
+  //event.preventDefault();
 
   if (!validateName()) {
     name.before(invalidName);
@@ -571,7 +573,7 @@ form.addEventListener('submit', (event) => {
     invalidName.style.color = "red";
     name.style.border = "2px solid red"
   }
-  event.preventDefault();
+  //event.preventDefault();
 
   if (!validateActivities()) {
     activities.before(checkboxSelection);
@@ -579,16 +581,26 @@ form.addEventListener('submit', (event) => {
     checkboxSelection.style.color = "red";
     activities.style.border = "2px solid red"
   }
-  event.preventDefault();
+  //event.preventDefault();
 
- 
- 
- 
-  if((validateName() && validateEmail() && validateCardNumber() && validateCvvCode() && validateZipCode() && validateActivities() === true) || (paypal.selected || bitcoin.selected === true)){
+  if(validateName() && validateEmail() && validateCardNumber() && validateCvvCode() && validateZipCode() && validateActivities() === true){
     form.submit();
   } 
 
+
+  if (paypal.selected && !validateName() && !validateEmail() && !validateActivities()) {
+    event.preventDefault();
+} else if (paypal.selected && validateName() && validateEmail() && validateActivities()){
+    form.submit();
+  }
+
+  if (bitcoin.selected && !validateName() && !validateEmail() && !validateActivities()) {
+    event.preventDefault();
+} else if (bitcoin.selected && validateName() && validateEmail() && validateActivities()){
+    form.submit();
+  }
+
+
 })
  
-
 
