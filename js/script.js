@@ -584,15 +584,11 @@ form.addEventListener('submit', (event) => {
  
  
  
-  if(validateName() && validateEmail() && validateCardNumber() && validateCvvCode() && validateZipCode() && validateActivities() === true){
+  if((validateName() && validateEmail() && validateCardNumber() && validateCvvCode() && validateZipCode() && validateActivities() === true) || (paypal.selected || bitcoin.selected === true)){
     form.submit();
-  }
- 
+  } 
 
 })
  
-
-
-
 
 
