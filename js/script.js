@@ -268,6 +268,7 @@ jsLibs.onchange = function() {
   bitcoin.style.display-"none";
   paypal.style.display-"none";
 //------------------------------------
+
 payment.addEventListener('change', () => {
   if (paypal.selected) {
     ccDiv.style.display="none";
@@ -283,6 +284,7 @@ payment.addEventListener('change', () => {
     bitcoinDiv.style.display="none";
   }
 });
+
 //                            END OF PAYMENT OPTION
 //===============================================================================
 
@@ -355,47 +357,44 @@ function validateCvvCode(){
  //               ACTIVITIE VALIDATION FUNCTION
 //===============================================================================
 
-// const purple = document.querySelectorAll('input[type="checkbox"]');
-// let boxChecked = false;
-// function validateActivities() {
-//   for(let i = 0; i < purple.length; i++) {
-//     if(purple[i].checked) {
-//     boxChecked = true;
-//     } else if (boxChecked) {
-//       checkboxSelection.style.display = "none";
-//     } else {
-//       checkboxSelection.style.display = "block";
-//     }
-//   }
-//};
-
-
-
-
-
-// let boxChecked = false;
-
-// for (let i = 0; i < activities.length; i++) {
-//     if (activities[i].checked) {
-//         boxChecked = true;
-//         break;
-//     }
-// }
-
-// if (boxChecked) {
-//     // hide the message
-// } else {
-//     // show the message and prevent default action
-// }
-
-
-
+function validateActivities() {
+  const box = document.querySelectorAll('input[type="checkbox"]');
+    for (let i = 0; i < box.length; i ++) {
+        if(box[i].checked === true) {
+            activities.style.border = "2px solid green";
+            checkboxSelection.style.display = "none"
+            
+            return true;
+        } else if (box[i].checekd === false) {
+          return false;
+        }
+    }
+ }
 
 
 //     ERROR
 //ERROR
     //ERROR
 $(document).ready(function(){
+
+  activities.addEventListener('keyup', function() {
+      if(validateActivities()) {
+      activities.style.border = "2px solid green";
+      checkboxSelection.style.display = "none";
+      return true;
+    }
+    else {
+      activities.before(checkboxSelection);
+      checkboxSelection.style.fontSize = "1em";
+      checkboxSelection.style.color = "red";
+      activities.style.border = "2px solid red";
+      checkboxSelection.style.display ="block";
+      return false;
+    }
+  });
+
+
+
   $("#name").keyup(function(){
     if(validateName()){
         // if the user name is valid set the input text and border to green
@@ -482,22 +481,6 @@ $("#cvv").keyup(function(){
 
 });
 
-// activities.addEventListener('click', function() {
-//   if (validateActivities()) {
-//     activities.style.border = "2pc solid green";
-//     checkboxSelection.style.display = "none";
-//     return true;
-//   } else {
-//     activities.before(checkboxSelection);
-//     checkboxSelection.style.fontSize = "1em";
-//     checkboxSelection.style.color = "red";
-//     activities.style.border = "2px solid red"
-//     checkboxSelection.style.display = "block";
-//     return false;
-//     //alert('IT WORKS!');
-//   }
-// })
-
 
 
 });
@@ -540,89 +523,76 @@ activities.addEventListener('change' , function(e){
 //===============================================================================
 
 form.addEventListener('submit', (event) => {
-  
   if (!validateEmail()) {
-    // invalidEmail.appendChild(email);
-    // email.insertBefore(invalidEmail);
     email.before(invalidEmail);
     invalidEmail.style.fontSize = "1em";
     invalidEmail.style.color = "red";
     email.style.border = "2px solid red"
-    //alert('Please Enter Valid Email Address');
   }
   event.preventDefault();
 
   if (!validateCardNumber()) {
-    // invalidEmail.appendChild(email);
-    // email.insertBefore(invalidEmail);
     creditCardNumber.before(invalidCcNum);
     invalidCcNum.style.fontSize = "1em";
     invalidCcNum.style.color = "red";
     creditCardNumber.style.border = "2px solid red"
-    //alert('Please Enter Creditcard Number');
   }
   event.preventDefault();
 
 
   if (!validateName()) {
-    // invalidEmail.appendChild(email);
-    // email.insertBefore(invalidEmail);
     name.before(invalidName);
     invalidName.style.fontSize = "1em";
     invalidName.style.color = "red";
     name.style.border = "2px solid red"
-    //alert('IT WORKS!');
   }
   event.preventDefault();
 
 
   if (!validateCvvCode()) {
-    // invalidEmail.appendChild(email);
-    // email.insertBefore(invalidEmail);
     cvv.before(invalidCvv);
     invalidCvv.style.fontSize = "1em";
     invalidCvv.style.color = "red";
     cvv.style.border = "2px solid red"
-    //alert('IT WORKS!');
   }
   event.preventDefault();
 
   if (!validateZipCode()) {
-    // invalidEmail.appendChild(email);
-    // email.insertBefore(invalidEmail);
     zip.before(invalidZip);
     invalidZip.style.fontSize = "1em";
     invalidZip.style.color = "red";
     zip.style.border = "2px solid red"
-    //alert('IT WORKS!');
   }
   event.preventDefault();
 
   if (!validateName()) {
-    // invalidEmail.appendChild(email);
-    // email.insertBefore(invalidEmail);
     name.before(invalidName);
     invalidName.style.fontSize = "1em";
     invalidName.style.color = "red";
     name.style.border = "2px solid red"
-    //alert('IT WORKS!');
   }
   event.preventDefault();
 
-  if (!activities()) {
-    // invalidEmail.appendChild(email);
-    // email.insertBefore(invalidEmail);
+  if (!validateActivities()) {
     activities.before(checkboxSelection);
     checkboxSelection.style.fontSize = "1em";
     checkboxSelection.style.color = "red";
     activities.style.border = "2px solid red"
-    //alert('IT WORKS!');
   }
   event.preventDefault();
 
+ 
+ 
+ 
+  if(validateName() && validateEmail() && validateCardNumber() && validateCvvCode() && validateZipCode() && validateActivities() === true){
+    form.submit();
+  }
+ 
 
 })
  
+
+
 
 
 
