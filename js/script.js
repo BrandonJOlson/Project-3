@@ -145,13 +145,16 @@ themeColor.style.display="none";                           //                   
 // if Design is set to "heart js" show only heart js shirts.      //                          //
 design.addEventListener("change", (event) => {                    //                          //
     console.log(event.target.value);                              //                          //
+    colorElement.selected = true;                         //                                  //
+    colorElement.text="Select a color"; 
     const color = document.getElementById('color');               //                          //
     for(let i = 0; i < color.length; i ++){                       //                          //
         let alt = color[i];                                       //                          //
         let val = event.target.value;                             //                          //
         console.log(alt);                                         //                          //
         console.log(val);                                         //                          //
-        if (val === 'js puns') {                                  //                          //
+        if (val === 'js puns') {         
+            colorElement.selected = true;                         //                          //
             themeColor.style.display="block";                     //                          //
             cornFlowerBLue.style.display="block";                 //                          //
             darkSlateGrey.style.display="block";                  //                          //
@@ -160,6 +163,7 @@ design.addEventListener("change", (event) => {                    //            
             steelBlue.style.display="none";                       //                          //
             dimGrey.style.display="none";                         //                          //
           } else if (val === 'heart js'){                         //                          //
+            colorElement.selected = true; 
             themeColor.style.display="block";                     //                          //
             tomato.style.display="block";                         //                          //
             steelBlue.style.display="block";                      //                          //
