@@ -1,4 +1,4 @@
-/***************   CONTAINS ERROR MESSAGES VARIABLES   **********************/
+/***************   CONTAINS ERROR MESSAGES VARIABLES   *********************/
 const invalidName = document.createElement('span');                        //
 invalidName.className="error";                                             //
 invalidName.id="invalidName";                                              //
@@ -107,7 +107,7 @@ const hideShirtTheme = design.firstElementChild;    //                          
 // hideShirtTheme.value="hide colors";              //                                        //
 hideShirtTheme.hidden="true";                       //                                        //
 //==================================================//                                        //
-                                                                                              //                                                                                              //                                                                                             //
+                                                                                              //                                                                                                                                                                                           //
 //================== SET DEFAULT COLOR OPTION ============//                                  //
 function changeColor() {                                  //                                  //
     //created an option with the var name colorElement    //                                  //
@@ -117,12 +117,12 @@ function changeColor() {                                  //                    
 }                                                         //                                  //
 changeColor();                                            //                                  //
 //========================================================//                                  //
-                                                                                              //                                                                                              //
+                                                                                              //                                                                                              
 //======== HIDE COLOR OPTION DEFAULT TEXT ========//                                          //
 const shirtSelect = color.firstElementChild;      //                                          //
 shirtSelect.hidden="true";                        //                                          //
 //============= END DEFAULT TEXT =================//                                          //
-                                                                                              //                                                                                              //                                                                                             //
+                                                                                              //                                                                                                                                                                                           //
 //=========================== JS PUNS SHIRT ONLY ====================================/        //
 const cornFlowerBLue = document.querySelector('option[value="cornflowerblue"]');    //        //
 const darkSlateGrey = document.querySelector('option[value="darkslategrey"]');      //        //
@@ -145,15 +145,15 @@ themeColor.style.display="none";                           //                   
 // if Design is set to "heart js" show only heart js shirts.      //                          //
 design.addEventListener("change", (event) => {                    //                          //
     console.log(event.target.value);                              //                          //
-    colorElement.selected = true;                         //                                  //
-    colorElement.text="Select a color"; 
+    colorElement.selected = true;                                 //                          //
+    colorElement.text="Select a color";                           //                          //
     const color = document.getElementById('color');               //                          //
     for(let i = 0; i < color.length; i ++){                       //                          //
         let alt = color[i];                                       //                          //
         let val = event.target.value;                             //                          //
         console.log(alt);                                         //                          //
         console.log(val);                                         //                          //
-        if (val === 'js puns') {         
+        if (val === 'js puns') {                                  //                          //
             colorElement.selected = true;                         //                          //
             themeColor.style.display="block";                     //                          //
             cornFlowerBLue.style.display="block";                 //                          //
@@ -163,7 +163,7 @@ design.addEventListener("change", (event) => {                    //            
             steelBlue.style.display="none";                       //                          //
             dimGrey.style.display="none";                         //                          //
           } else if (val === 'heart js'){                         //                          //
-            colorElement.selected = true; 
+            colorElement.selected = true;                         //                          //
             themeColor.style.display="block";                     //                          //
             tomato.style.display="block";                         //                          //
             steelBlue.style.display="block";                      //                          //
@@ -255,7 +255,7 @@ payment.addEventListener('change', () => {      //
 
 
 /*************************  VALIDATE FUNCTIONS ******************************************/
-                                                                                        //                                                                                        //
+                                                                                        //                                                                                        
 //=============== NAME VALIDATION FUNCTION =============//                              //
 function validateName(){                                //                              //
   // get value from name input                          //                              //
@@ -268,7 +268,7 @@ function validateName(){                                //                      
   }                                                     //                              //
 }                                                       //                              //
 //========== END NAME VALIDATION FUNCTION ==============//                              //
-                                                                                        //                                                                                        //
+                                                                                        //                                                                                        
 //=================== EMAIL VALIDATION FUNCTION ============================//          //
 function validateEmail(){                                                   //          //
   // get value from email input                                             //          //
@@ -322,7 +322,7 @@ $("form").submit(function(e){                                               //  
    }                                                                        //          //
 });                                                                         //          //
 //=================== EMAIL VALIDATION FUNCTION ============================//          //
-                                                                                        //                                                                                        //
+                                                                                        //                                                                                        
 //====== CREDIT CARD NUMBER VALIDATION FUNCTION =====//                                 //
 function validateCardNumber(){                       //                                 //
   // get value from card input                       //                                 //
@@ -335,7 +335,7 @@ function validateCardNumber(){                       //                         
   }                                                  //                                 //
 }                                                    //                                 //
 //====== END CARD NUMBER VALIDATION FUNCTION ========//                                 //
-                                                                                        //                                                                                        //
+                                                                                        //                                                                                        
 //========== ZIPCODE VALIDATION FUNCTION ==============//                               //
 function validateZipCode(){                            //                               //
   // get zip code value                                //                               //
@@ -348,7 +348,7 @@ function validateZipCode(){                            //                       
   }                                                    //                               //
 }                                                      //                               //
 //========== END ZIPCODE VALIDATION FUNCTION ==========//                               //
-                                                                                        //                                                                                        //
+                                                                                        //                                                                                        
 //======== CVV VALIDATION FUNCTION =========//                                          //
 function validateCvvCode(){                 //                                          //
   // get cvv code value                     //                                          //
@@ -361,7 +361,7 @@ function validateCvvCode(){                 //                                  
   }                                         //                                          //  
 }                                           //                                          //
 //====== END CVV VALIDATION FUNCTION =======//                                          //
-                                                                                        //                                                                                        //
+                                                                                        //                                                                                        
 //=============== ACTIVITIE VALIDATION FUNCTION ======================//                //
 function validateActivities() {                                       //                //
   const box = document.querySelectorAll('input[type="checkbox"]');    //                //
@@ -376,7 +376,7 @@ function validateActivities() {                                       //        
     }                                                                 //                //
  }                                                                    //                //
 //=============== ACTIVITIE VALIDATION FUNCTION ======================//                //
-                                                                                        //                                                                                        //
+                                                                                        //                                                                                        
 /*************************  END VALIDATE FUNCTIONS **************************************/
 
 /*************************  ERROR FUNCTIONS ***************************************************/
